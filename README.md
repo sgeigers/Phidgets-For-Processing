@@ -1,4 +1,10 @@
-The following describes how to set up a Processing Library project in Eclipse and build it successfully, and to make your Library ready for distribution.
+A Library by Shachar Geiger for the Processing programming environment.
+Last update, 07/07/2016. 
+
+Allows easy control over Phidget boards. 
+Only for Windows based systems currently.
+Examples based documentation - everything you need to know in order to use this library is inside the examples - just open the example that fits the Phidget board you'd like to use.
+Mostly suitable for beginners, but more advanced users will also enjoy the ease and directness of use. Supports most common Phidgets boards. For details on Phidgets, goto [Phidgets website](www.phidgets.com).
 
 ## Import to Eclipse
 

@@ -5,7 +5,7 @@ Last update, 07/07/2016.
 Allows easy control over Phidget boards. 
 Only for Windows based systems currently.
 Examples based documentation - everything you need to know in order to use this library is inside the examples - just open the example that fits the Phidget board you'd like to use.
-Mostly suitable for beginners, but more advanced users will also enjoy the ease and directness of use. Supports most common Phidgets boards. For details on Phidgets, goto <a href="www.phidgets.com">Phidgets website</a>.
+Mostly suitable for beginners, but more advanced users will also enjoy the ease and directness of use. Supports most common Phidgets boards. For details on Phidgets, goto <a href="http://www.phidgets.com">Phidgets website</a>.
 
 ## Installation
 Open the Processing editor, choose Sketch -> Import Library -> Add Library, type "phidgets" in the search bar, choose PhidgetsForProcessing and press "Install" below. After install is finished, exit the editor and restart it.

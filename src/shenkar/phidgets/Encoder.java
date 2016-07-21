@@ -8,7 +8,7 @@ public class Encoder extends Phid4P5 {
 	EncoderPhidget ph;
 
 	/**
-	 * @example Motor_Example
+	 * @example Encoder_Example
 	 * @param theParent
 	 */
 

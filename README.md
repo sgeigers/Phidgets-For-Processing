@@ -1,6 +1,6 @@
 # Phidgets For Processing
 A Library by Shachar Geiger for the [Processing](http://www.processing.org) programming environment.
-Last update, 07/07/2016. 
+Last update, 21/07/2016. 
 
 Allows easy control over Phidget boards. 
 Only for Windows based systems currently.

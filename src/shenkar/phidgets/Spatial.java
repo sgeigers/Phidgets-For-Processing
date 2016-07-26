@@ -11,6 +11,8 @@ public class Spatial extends Phid4P5 {
 	private double pitchAngle;
 	private double yawAngle;
 	private long lastCalcTime;
+	private boolean pitchRollSupported;
+	private boolean yawSupported;
 		
 	SpatialPhidget ph;
 
@@ -32,6 +34,14 @@ public class Spatial extends Phid4P5 {
 		lastCalcTime = 0;
 		setPhid(ph);
 		phSetup(0);
+		try {
+			if (ph.getAccelerationAxisCount()==3) pitchRollSupported = true;
+			else pitchRollSupported = false;
+			if (ph.getCompassAxisCount()==3) yawSupported = true;
+			else yawSupported = false;
+		} catch (PhidgetException ex) {
+			System.out.println(ex);
+		}
 	}
 
 	/**
@@ -53,6 +63,14 @@ public class Spatial extends Phid4P5 {
 		lastCalcTime = 0;
 		setPhid(ph);
 		phSetup(ser);
+		try {
+			if (ph.getAccelerationAxisCount()==3) pitchRollSupported = true;
+			else pitchRollSupported = false;
+			if (ph.getCompassAxisCount()==3) yawSupported = true;
+			else yawSupported = false;
+		} catch (PhidgetException ex) {
+			System.out.println(ex);
+		}
 	}
 
 	/**
@@ -131,32 +149,43 @@ public class Spatial extends Phid4P5 {
 	}
 
 	private void calcHeading() {
-		try {
-			if (System.currentTimeMillis() - lastCalcTime >= 4) {
-				if ((ph.getCompassAxisCount()==3) && (ph.getAccelerationAxisCount()==3)) {
+		if (System.currentTimeMillis() - lastCalcTime >= 4) {
+			lastCalcTime = System.currentTimeMillis();
+			if (pitchRollSupported) {
+				try {
 					gravity[0] = ph.getAcceleration(0);
 					gravity[1] = ph.getAcceleration(1);
 					gravity[2] = ph.getAcceleration(2);
-					
+					rollAngle = Math.atan2(gravity[1], gravity[2]);
+					pitchAngle = Math.atan(-gravity[0] / ((gravity[1] * Math.sin(rollAngle)) + (gravity[2] * Math.cos(rollAngle))));
+				} catch (PhidgetException ex) {
+					System.out.println(ex);
+				}
+			}
+			else {
+				return;  // currently - no Phidgets magnetometer without accelerometer, so exit
+			}
+
+			if (yawSupported) {
+				try {
 					magField[0] = ph.getMagneticField(0);
 					magField[1] = ph.getMagneticField(1);
 					magField[2] = ph.getMagneticField(2);
-					
-					rollAngle = Math.atan2(gravity[1], gravity[2]);
-					
-					pitchAngle = Math.atan(-gravity[0] / ((gravity[1] * Math.sin(rollAngle)) + (gravity[2] * Math.cos(rollAngle))));
-					
-					yawAngle = Math.atan2((magField[2] * Math.sin(rollAngle)) - (magField[1] * Math.cos(rollAngle)),
-							   (magField[0] * Math.cos(pitchAngle)) + (magField[1] * Math.sin(pitchAngle) * Math.sin(rollAngle)) + (magField[2] * Math.sin(pitchAngle) * Math.cos(rollAngle)));
-
-					lastCalcTime = System.currentTimeMillis();
+				} catch (PhidgetException ex) {
+					if (ex.getErrorNumber()==PhidgetException.EPHIDGET_UNKNOWNVAL) {
+						return;  // if magnetic data not available - don't recalculate yaw.
+					}
+					System.out.println(ex);
 				}
+				yawAngle = Math.atan2((magField[2] * Math.sin(rollAngle)) - (magField[1] * Math.cos(rollAngle)),
+						   (magField[0] * Math.cos(pitchAngle)) + 
+						   (magField[1] * Math.sin(pitchAngle) * Math.sin(rollAngle)) + 
+						   (magField[2] * Math.sin(pitchAngle) * Math.cos(rollAngle)));
+
 			}
-		} catch (PhidgetException ex) {
-			System.out.println(ex);
 		}
 	}
-	
+
 	/**
 	 * Get pitch about axis 1 - calculated from accelerometer data
 	 * 
@@ -165,8 +194,14 @@ public class Spatial extends Phid4P5 {
 	 */
 
 	public float getPitch() {
-		calcHeading();
-		return (float)(pitchAngle*180.0/Math.PI);
+		if (pitchRollSupported) {
+			calcHeading();
+			return (float)(pitchAngle*180.0/Math.PI);
+		}
+		else {
+			System.out.println("Connected board does not support pitch and roll calculations (less than 3 accelerometer axes)");
+			return 0;
+		}
 	}
 	
 	/**
@@ -177,8 +212,14 @@ public class Spatial extends Phid4P5 {
 	 */
 
 	public float getRoll() {
-		calcHeading();
-		return (float)(rollAngle*180.0/Math.PI);
+		if (pitchRollSupported) {
+			calcHeading();
+			return (float)(rollAngle*180.0/Math.PI);
+		}
+		else {
+			System.out.println("Connected board does not support pitch and roll calculations (less than 3 accelerometer axes)");
+			return 0;
+		}
 	}
 	
 	/**
@@ -189,8 +230,14 @@ public class Spatial extends Phid4P5 {
 	 */
 
 	public float getYaw() {
-		calcHeading();
-		return (float)(yawAngle*180.0/Math.PI);
+		if (yawSupported) {
+			calcHeading();
+			return (float)(yawAngle*180.0/Math.PI);
+		}
+		else {
+			System.out.println("Connected board does not support yaw calculations (less than 3 magnetometer axes)");
+			return 0;
+		}
 	}
 	
 	/**

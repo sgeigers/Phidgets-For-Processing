@@ -26,7 +26,7 @@ void setup() {
 void draw() {
   background(0);
   translate(width/2,height/2);
-  rotate(-spatial.getPitch()*PI/180);
+  rotate(-spatial.getYaw()*PI/180);
   drawArrow();
 }
 

@@ -25,3 +25,5 @@ If, when running an example, you get an error similar to "ClassNotFoundException
 ## Reference
 Beginners are encouraged to open the examples from within the Processing environment (File -> Examples -> Contributed Libraries -> Phidgets For Processing).<br>
 More advanced programmers can have a look at the javadoc reference. A copy of the reference is included in the .zip as well.
+
+Written in the Kadar Design and Technology Center, Shenkar College of Engineering, Design and Art, Israel. 

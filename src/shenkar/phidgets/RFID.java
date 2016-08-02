@@ -38,7 +38,7 @@ public class RFID extends Phid4P5 {
 		phSetup(0);
 		try {
 			tagDetectedMethod = myParent.getClass().getMethod("tagDetected",
-                    new Class[] { RFID.class });
+                    new Class<?>[] { RFID.class });
 		    ph.addTagGainListener(new TagGainListener() {
 		        public void tagGained(TagGainEvent tge) {
 		          tagDetectedMtd();
@@ -51,7 +51,7 @@ public class RFID extends Phid4P5 {
 		}
 		try {
 			tagLostMethod = myParent.getClass().getMethod("tagLost",
-                    new Class[] { RFID.class });
+                    new Class<?>[] { RFID.class });
 		    ph.addTagLossListener(new TagLossListener() {
 		        public void tagLost(TagLossEvent tle) {
 		          tagLostMtd();
@@ -83,7 +83,7 @@ public class RFID extends Phid4P5 {
 		phSetup(ser);
 		try {
 			tagDetectedMethod = myParent.getClass().getMethod("tagDetected",
-                    new Class[] { RFID.class });
+                    new Class<?>[] { RFID.class });
 		    ph.addTagGainListener(new TagGainListener() {
 		        public void tagGained(TagGainEvent te) {
 		          tagDetectedMtd();
@@ -96,7 +96,7 @@ public class RFID extends Phid4P5 {
 		}
 		try {
 			tagLostMethod = myParent.getClass().getMethod("tagLost",
-                    new Class[] { RFID.class });
+                    new Class<?>[] { RFID.class });
 		    ph.addTagLossListener(new TagLossListener() {
 		        public void tagLost(TagLossEvent tle) {
 		          tagLostMtd();

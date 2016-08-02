@@ -1,6 +1,10 @@
 package shenkar.phidgets;
 
+import java.lang.reflect.Method;
+
 import com.phidgets.*;
+import com.phidgets.event.SpatialDataEvent;
+import com.phidgets.event.SpatialDataListener;
 import processing.core.PApplet;
 
 public class Spatial extends Phid4P5 {
@@ -13,7 +17,17 @@ public class Spatial extends Phid4P5 {
 	private long lastCalcTime;
 	private boolean pitchRollSupported;
 	private boolean yawSupported;
-		
+
+	Method SpatialEventMethod;
+	public float[] acceleration;
+	public float[] rotationRate;
+	public float[] magneticField;
+	public boolean newAcceleration;
+	public boolean newRotationRate;
+	public boolean newMagneticField;
+	public float timeStamp;
+	public int serNum;
+
 	SpatialPhidget ph;
 
 	/**
@@ -34,14 +48,7 @@ public class Spatial extends Phid4P5 {
 		lastCalcTime = 0;
 		setPhid(ph);
 		phSetup(0);
-		try {
-			if (ph.getAccelerationAxisCount()==3) pitchRollSupported = true;
-			else pitchRollSupported = false;
-			if (ph.getCompassAxisCount()==3) yawSupported = true;
-			else yawSupported = false;
-		} catch (PhidgetException ex) {
-			System.out.println(ex);
-		}
+		postConstructor();
 	}
 
 	/**
@@ -63,6 +70,11 @@ public class Spatial extends Phid4P5 {
 		lastCalcTime = 0;
 		setPhid(ph);
 		phSetup(ser);
+		postConstructor();
+	}
+
+	private void postConstructor() {
+		// test for roll, pitch and yaw calculations support by attached board:
 		try {
 			if (ph.getAccelerationAxisCount()==3) pitchRollSupported = true;
 			else pitchRollSupported = false;
@@ -71,8 +83,63 @@ public class Spatial extends Phid4P5 {
 		} catch (PhidgetException ex) {
 			System.out.println(ex);
 		}
-	}
+		
+		// check if events are being used, and attach listener if needed:
+		try {
+			SpatialEventMethod = myParent.getClass().getMethod("spatialUpdate",
+                    new Class<?>[] { Spatial.class });
+			acceleration = new float[3];
+			rotationRate = new float[3];
+			magneticField = new float[3];
+			ph.addSpatialDataListener(new SpatialDataListener() {
+		        public void data(SpatialDataEvent ae) {
+		        	SpatialEventData[] sda = ae.getData();
+		        	try {
+		        		serNum = ae.getSource().getSerialNumber();
+			        } catch (PhidgetException ex) {
+						System.out.println(ex);
+					}
+		        	for (int i=0; i<sda.length; i++) {
+		        		SpatialEventData sd = sda[i];
+		        		
+		        		double[] dAccel = sd.getAcceleration();
+		        		for (int j=0; j<dAccel.length; j++)
+		        			acceleration[j] = (float)dAccel[j];
+		        		newAcceleration = (dAccel.length > 0);
+		        		
+		        		double[] dGyro = sd.getAngularRate();
+		        		for (int j=0; j<dGyro.length; j++)
+		        			rotationRate[j] = (float)dGyro[j];
+		        		newRotationRate = (dGyro.length > 0);
 
+		        		double[] dMag = sd.getMagneticField();
+		        		for (int j=0; j<dMag.length; j++)
+		        			magneticField[j] = (float)dMag[j];
+		        		newMagneticField = (dMag.length > 0);
+		        		
+		        		timeStamp = (float)sd.getTime();
+		        		invokeMtd();
+		        	}
+		        }
+		      }
+		    );
+		} 
+		catch (Exception e) {
+			// no such method, or an error.. which is fine, just ignore
+		}	
+	}
+	
+	private void invokeMtd() {
+		try {
+			SpatialEventMethod.invoke(myParent, new Object[] { this });
+		} 
+		catch (Exception e) {
+			System.err.println("Disabling SpatialEventMethod() for " + this.hashCode() +
+			                         " because of an error.");
+			e.printStackTrace();
+			SpatialEventMethod = null;
+		}		
+	}
 	/**
 	 * Get acceleration in a specific axis
 	 *
@@ -253,4 +320,24 @@ public class Spatial extends Phid4P5 {
 		}
 	}
 	
+	/**
+	 * Sets data rate, in milliseconds. default: 8ms
+	 * When set to less then the maximum data rate, data is still sampled at the maximum rate, and averaged before being sent to the user.
+	 * 
+	 * @param rate
+	 * 				desired data rate in milliseconds.
+	 * 				for PhidgetSpatial 3/3/3 board: 4, 8, 12, 16, 20 etc. up to 1000
+	 * 				for PhidgetSpatial 0/0/3 board: 1, 2, 4, 8, 16, 24, 32 etc. up to 1000
+	 * 
+	 */
+
+	public void setDataRate(int rate) {
+		try {
+			//rate = ((rate+2)/4)*4;
+			//rate = Math.min(Math.max(rate, 4), 1000);
+			ph.setDataRate(rate);
+		} catch (PhidgetException ex) {
+			System.out.println(ex);
+		}
+	}
 }

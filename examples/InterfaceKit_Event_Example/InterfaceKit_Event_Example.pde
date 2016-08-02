@@ -73,7 +73,8 @@ void digitalInputChange(InterfaceKit ifk) {
    When defined, this function is automatically called whenever a digital input changes stae (e.g a switch is closed or oppened).
    Inside the function, it is possible to use ifk.input and ifk.state variables for getting the position of digital input that
    caused the event, and its new state.
-   This is useful for wiritng input methods in the same manner they are written for kewyboard or mouse (e.g keyPressed and mousePressed)
+   This is useful for wiritng input methods in the same manner they are written for kewyboard or mouse (e.g keyPressed and mousePressed).
+   NOTE: the rate of calls for this function is limited by processing's frame rate (60 frames per second, by default).
    
  
 */

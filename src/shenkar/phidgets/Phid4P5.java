@@ -22,7 +22,7 @@ public class Phid4P5 {
 	
 	protected Phidget ph;
 
-	public final static String VERSION = "0.1";
+	public final static String VERSION = "0.3";
 
 	public final static int ATTACHMENT_TIMEOUT = 500;
 	

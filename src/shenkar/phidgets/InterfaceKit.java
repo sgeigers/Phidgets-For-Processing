@@ -37,8 +37,8 @@ public class InterfaceKit extends Phid4P5 {
 		phSetup(0);
 		try {
 			digitalInputChangeMethod = myParent.getClass().getMethod("digitalInputChange",
-                    new Class[] { InterfaceKit.class });
-			    ph.addInputChangeListener(new InputChangeListener() {
+                    new Class<?>[] { InterfaceKit.class });
+			ph.addInputChangeListener(new InputChangeListener() {
 		        public void inputChanged(InputChangeEvent ie) {
 		          input = ie.getIndex();
 		          state = ie.getState();
@@ -71,7 +71,7 @@ public class InterfaceKit extends Phid4P5 {
 		phSetup(ser);
 		try {
 			digitalInputChangeMethod = myParent.getClass().getMethod("digitalInputChange",
-                    new Class[] { InterfaceKit.class });
+                    new Class<?>[] { InterfaceKit.class });
 			    ph.addInputChangeListener(new InputChangeListener() {
 		        public void inputChanged(InputChangeEvent ie) {
 		          input = ie.getIndex();

@@ -32,7 +32,7 @@ public class IR extends Phid4P5 {
 		phSetup(0);
 		try {
 			IRReceivedMethod = myParent.getClass().getMethod("IRReceived",
-                    new Class[] { IR.class });
+                    new Class<?>[] { IR.class });
 		    ph.addCodeListener(new CodeListener() {
 		        public void code(CodeEvent ce) {
 		        	IRReceivedMtd();
@@ -45,7 +45,7 @@ public class IR extends Phid4P5 {
 		}
 		try {
 			IRLearnedMethod = myParent.getClass().getMethod("IRLearned",
-                    new Class[] { IR.class });
+                    new Class<?>[] { IR.class });
 		    ph.addLearnListener(new LearnListener() {
 		        public void learn(LearnEvent le) {
 		        	IRLearnedMtd();
@@ -77,7 +77,7 @@ public class IR extends Phid4P5 {
 		phSetup(ser);
 		try {
 			IRReceivedMethod = myParent.getClass().getMethod("IRReceived",
-                    new Class[] { IR.class });
+                    new Class<?>[] { IR.class });
 		    ph.addCodeListener(new CodeListener() {
 		        public void code(CodeEvent ce) {
 		        	IRReceivedMtd();
@@ -90,7 +90,7 @@ public class IR extends Phid4P5 {
 		}
 		try {
 			IRLearnedMethod = myParent.getClass().getMethod("IRLearned",
-                    new Class[] { IR.class });
+                    new Class<?>[] { IR.class });
 		    ph.addLearnListener(new LearnListener() {
 		        public void learn(LearnEvent le) {
 		        	IRLearnedMtd();

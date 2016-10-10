@@ -3,7 +3,7 @@ A Library by Shachar Geiger for the [Processing](http://www.processing.org) prog
 Last update, 21/07/2016. 
 
 Allows easy control over Phidget boards. 
-Only for Windows based systems currently.
+For Windows and OSX systems
 Examples based documentation - everything you need to know in order to use this library is inside the examples - just open the example that fits the Phidget board you'd like to use.
 Mostly suitable for beginners, but more advanced users will also enjoy the ease and directness of use. Supports most common Phidgets boards. For details on Phidgets, goto [Phidgets website](http://www.phidgets.com).
 
@@ -20,6 +20,7 @@ If, when running an example, you get an error similar to "ClassNotFoundException
 <li>Download [phidgets21jar.zip](http://www.phidgets.com/downloads/libraries/phidget21jar.zip), and unzip it.
 <li>Replace phidget21.jar in library folder (typically "c:\My Documents\Processing\libraries\PhidgetsForProcessing\library") with the new file you just downloaded.
 <li>Restart Processing.
+<li>*Mac users may also need to copy from /Library/Java/Extensions/libphidget21.jnilib into /Documents/Processing/libraries/PhidgetsForProcessing/library (overwrite existing file).
 </ol>
 
 ## Reference

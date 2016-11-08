@@ -14,16 +14,16 @@
 
 import shenkar.phidgets.*;
 
-LED led;
+LED myLED;
 
 void setup() {
   size(500,500);
-  led = new LED(this);
+  myLED = new LED(this);
 }
 
 void draw() {
-  led.setBrightness(0, mouseX/5);
-  led.setLinearBrightness(1, mouseX/5);
+  myLED.setBrightness(0, mouseX/5);
+  myLED.setLinearBrightness(1, mouseX/5);
 }
 
 
@@ -34,16 +34,16 @@ void draw() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- LED - The class which represents a PhidgetLED board in Processing.
- led - A name to represent the board that is connected to the computer.
+ LED   - The class which represents a PhidgetLED board in Processing.
+ myLED - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhidgetLED) to a computer, see example "Connect_Multiple_Phidgets".
  
  new LED(this) - A command to create an object and connect it to the connected board.
  
- led.setBrightness(0, mouseX/5) - Set brightness of LED connected to position 0 of the board to value set by mouse x position
+ myLED.setBrightness(0, mouseX/5) - Set brightness of LED connected to position 0 of the board to value set by mouse x position
  
- led.setLinearBrightness(1, mouseX/5) - Same as above, but for LED connected to position 1 and with linear brightness 9connect LEDs to position 0 and 1 for comparison)
+ myLED.setLinearBrightness(1, mouseX/5) - Same as above, but for LED connected to position 1 and with linear brightness 9connect LEDs to position 0 and 1 for comparison)
  
  All functions:
  

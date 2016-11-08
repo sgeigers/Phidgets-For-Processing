@@ -14,19 +14,19 @@
 
 import shenkar.phidgets.*;
 
-Motor mot;
+Motor myMotor;
 
 void setup() {
   size(800, 600);
-  mot = new Motor(this);
+  myMotor = new Motor(this);
   background(0);
   line(400,100, 400,500);
-  mot.setAcceleration(0, 100);
+  myMotor.setAcceleration(0, 100);
 }
 
 void draw() {
-  mot.setSpeed(0, (mouseX-400)/4);
-  println(mot.getEncoderPosition());
+  myMotor.setSpeed(0, (mouseX-400)/4);
+  println(myMotor.getEncoderPosition());
 }
 
 
@@ -37,18 +37,18 @@ void draw() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- Motor - The class which represents a PhidgetMotorControl board in Processing.
- mot - A name to represent the board that is connected to the computer.
+ Motor   - The class which represents a PhidgetMotorControl board in Processing.
+ myMotor - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhidgetMotorControl) to a computer, see example "Connect_Multiple_Phidgets".
  
  new Motor(this) - A command to create an object and connect it to the connected board.
  
- mot.setAcceleration(0, 100) - set acceleration for motor 0 to value 100.
+ myMotor.setAcceleration(0, 100) - set acceleration for motor 0 to value 100.
  
- mot.setSpeed(0, (mouseX-400)/4) - set rotation speed for motor 0 according to x position of mouse.
+ myMotor.setSpeed(0, (mouseX-400)/4) - set rotation speed for motor 0 according to x position of mouse.
 
- println(mot.getEncoderPosition()) - assuming an encoder is connected, this prints its position to the console.
+ println(myMotor.getEncoderPosition()) - assuming an encoder is connected, this prints its position to the console.
 
  
  All functions:

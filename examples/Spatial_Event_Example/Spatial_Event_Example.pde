@@ -11,20 +11,20 @@
  getMagneticField(axis)  // get magnetic field strength for "axis" (0, 1 or 2). Units: Gauss
  initGyro()              // initialize gyro sensor. Board must remain stationary while initializing (1-2 seconds).
  setDataRate(rate)       // sets time between sensor reads, in milliseconds. Default = 8ms
- spatialUpdate(Spatial spt)  // an event function called every time the board has a new reading. See Spatial_Event_Example
+ spatialUpdate(Spatial callingSpatial)  // an event function called every time the board has a new reading.
 */
 
 import shenkar.phidgets.*;
 
-Spatial spatial;
+Spatial mySpatial;
 float gyroTurn = 0;  // accumulated turn, as integrated from gyro data
-float pTime=0;       // previous timeStamp - used inside the event to calculate rotation integral
+float pTime = 0;     // previous timeStamp - used inside the event to calculate rotation integral
 
 void setup() {
   size(500,500);
   
-  spatial = new Spatial(this);
-  spatial.setDataRate(4);
+  mySpatial = new Spatial(this);
+  mySpatial.setDataRate(4);
 }
 
 
@@ -35,13 +35,13 @@ void draw() {
   drawArrow();
 }
 
-void spatialUpdate(Spatial spt) {
-  if (spt.newRotationRate) {
-    float currentTime = spt.timeStamp;
+void spatialUpdate(Spatial callingSpatial) {
+  if (callingSpatial.newRotationRate) {
+    float currentTime = callingSpatial.timeStamp;
     float dTime = currentTime - pTime;
     pTime = currentTime;
     
-    gyroTurn += spt.rotationRate[2] * dTime;
+    gyroTurn += callingSpatial.rotationRate[2] * dTime;
   }
 }
 
@@ -70,25 +70,20 @@ void drawArrow() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- Spatial - The class which represents a PhidgetSpatial board in Processing.
- spatial - A name to represent the board that is connected to the computer.
+ Spatial   - The class which represents a PhidgetSpatial board in Processing.
+ mySpatial - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhidgetSpatial) to a computer, see example "Connect_Multiple_Phidgets".
 
- spatial.setDataRate(4) - Set maximum read rate for the board (PhidgetSpatial 3/3/3)
+ mySpatial.setDataRate(4) - Set maximum read rate for the board (PhidgetSpatial 3/3/3)
  
- void spatialUpdate(Spatial spt) - define a function that will be called automatically every time the board has a new reading.
+ void spatialUpdate(Spatial callingSpatial) - define a function that will be called automatically every time the board has a new reading.
  
- float currentTime = spt.timeStamp - read time of the reading
+ float currentTime = callingSpatial.timeStamp - read time of the reading
  
  float dTime = currentTime - pTime - calculate time elapsed since previous reading
  
- gyroTurn += spt.rotationRate[2] * dTime - integrate rotation rate to get relative heading from gyroscope sensor.  
- 
-  
- new Spatial(this) - A command to create an object and connect it to the connected board.
-
- rotate(-spatial.getYaw()*PI/180) - read current bearing of the board, convert result to radians and use it to rotate the drawing canvas in an inverted angle.
+ gyroTurn += callingSpatial.rotationRate[2] * dTime - integrate rotation rate to get relative heading from gyroscope sensor.  
 
  
  All functions:
@@ -135,22 +130,22 @@ void drawArrow() {
      for PhidgetSpatial 3/3/3 board: 4, 8, 12, 16, 20 etc. up to 1000
      for PhidgetSpatial 0/0/3 board: 1, 2, 4, 8, 16, 24, 32 etc. up to 1000
    
- void spatialUpdate(Spatial spt)
+ void spatialUpdate(Spatial callingSpatial)
   An event function called every time the board has a new reading.
    When defined, this function is automatically called every time the board has a new reading (i.e. every 8ms or new rate set by "setDataRate" function).
    This is useful for reading the sensors at steady rate, without losing readings, and without interrupting to other procedures (like drawing to the screen).
    Inside the function, it is possible to use following variables for getting the information about the new reading:
      
-     spt.acceleration - float array. holds values of acceleration by axis (e.g. acceleration[0]).
-     spt.rotationRate - float array. holds values of rotation rate (gyro readings) by axis.
-     spt.magneticField - float array. holds values of magnetic field.
+     callingSpatial.acceleration - float array. holds values of acceleration by axis (e.g. acceleration[0]).
+     callingSpatial.rotationRate - float array. holds values of rotation rate (gyro readings) by axis.
+     callingSpatial.magneticField - float array. holds values of magnetic field.
      
-     spt.newAcceleration - boolean. "true" if new acceleration read. otherwise - the values in "spt.acceleration" are from last reading.
-     spt.newRotationRate - boolean. same logics...
-     spt.newMagneticField - boolean. same here.
+     callingSpatial.newAcceleration - boolean. "true" if new acceleration read. otherwise - the values in "spt.acceleration" are from last reading.
+     callingSpatial.newRotationRate - boolean. same logics...
+     callingSpatial.newMagneticField - boolean. same here.
      
-     spt.timeStamp - exact time at which the reading has been taken (measured roughly from program start).
-     spt.serNum - the serial number of the board which enitiated the event (see example "Connect_Multiple_Phidgets").
+     callingSpatial.timeStamp - exact time at which the reading has been taken (measured roughly from program start).
+     callingSpatial.serNum - the serial number of the board which enitiated the event (see example "Connect_Multiple_Phidgets").
 
    NOTE: it is not possible to draw to the screen inside this function. Doing this might cause the sketch to crash.
 */

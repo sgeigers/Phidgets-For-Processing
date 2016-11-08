@@ -24,31 +24,31 @@
 
 import shenkar.phidgets.*;
 
-LCD lcd;
+LCD myLCD;
 
 void setup() {
   size(200,200);
   
-  lcd = new LCD(this);
+  myLCD = new LCD(this);
   
-  lcd.lightOn();
-  lcd.defineCustomChar(9, 1015950, 462879);
-  lcd.displayString (0, "Logo: " + (char)9 + "  Nice?");
-  lcd.hideCursorBlink();
-  lcd.displayString (1, "MousePress to change");
+  myLCD.lightOn();
+  myLCD.defineCustomChar(9, 1015950, 462879);
+  myLCD.displayString (0, "Logo: " + (char)9 + "  Nice?");
+  myLCD.hideCursorBlink();
+  myLCD.displayString (1, "MousePress to change");
 }
 
 void draw() {
 }
 
 void mousePressed() {
-  lcd.defineCustomChar(9, 1037444, 135871);
-  lcd.displayChar(1, 5, 'p');
+  myLCD.defineCustomChar(9, 1037444, 135871);
+  myLCD.displayChar(1, 5, 'p');
 }
 
 void mouseReleased() {
-  lcd.defineCustomChar(9, 1015950, 462879);
-  lcd.displayChar(1, 5, 'P');
+  myLCD.defineCustomChar(9, 1015950, 462879);
+  myLCD.displayChar(1, 5, 'P');
 }
 
 
@@ -60,24 +60,24 @@ void mouseReleased() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- LCD - The class which represents a PhidgetsTextLCD board in Processing.
- lcd - A name to represent the board that is connected to the computer.
+ LCD   - The class which represents a PhidgetsTextLCD board in Processing.
+ myLCD - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g LCD) to a computer, see example "Connect_Multiple_Phidgets".
  
  new LCD(this) - A command to create an object and connect it to the connected board.
  
- lcd.lightOn() - turn on backlight. In most environments and screens, the text can hardly be seen when light is off. 
+ myLCD.lightOn() - turn on backlight. In most environments and screens, the text can hardly be seen when light is off. 
  
- lcd.defineCustomChar(9, 1015950, 462879) - define a special character in slot 9 - logo for an imaginary company. See below for explanations on how to create and use special characters.
+ myLCD.defineCustomChar(9, 1015950, 462879) - define a special character in slot 9 - logo for an imaginary company. See below for explanations on how to create and use special characters.
  
- lcd.displayString (0, "Logo: " + (char)9 + "  Nice?") - display a string on row 0, which includes the special character we just defined.
+ myLCD.displayString (0, "Logo: " + (char)9 + "  Nice?") - display a string on row 0, which includes the special character we just defined.
 
- lcd.displayString (1, "MousePress to change") - display a string on row 1.
+ myLCD.displayString (1, "MousePress to change") - display a string on row 1.
 
- lcd.defineCustomChar(9, 1037444, 135871) - change the shape of special character in slot 9 (effect immediately. can be used for animations and interactions).
+ myLCD.defineCustomChar(9, 1037444, 135871) - change the shape of special character in slot 9 (effect immediately. can be used for animations and interactions).
  
- lcd.displayChar(1, 5, 'p') - display the character 'p' (lowercase 'p') at a specific location of LCD.
+ myLCD.displayChar(1, 5, 'p') - display the character 'p' (lowercase 'p') at a specific location of LCD.
  
  
  All functions:

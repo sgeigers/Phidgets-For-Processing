@@ -16,17 +16,17 @@
 
 import shenkar.phidgets.*;
 
-Servo servo;
+Servo myServo;
 
 void setup() {
   size(800, 720);
-  servo = new Servo(this);
+  myServo = new Servo(this);
   drawGraph();
 }
 
 void draw() {
-  servo.setPosition(0, mouseY/4);
-  servo.setSpeed(0, mouseX/4);
+  myServo.setPosition(0, mouseY/4);
+  myServo.setSpeed(0, mouseX/4);
 }
 
 void drawGraph() {
@@ -54,16 +54,16 @@ void drawGraph() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- Servo - The class which represents a PhidgetServo or PhisgetAdvancedServo board in Processing.
- servo - A name to represent the board that is connected to the computer.
+ Servo   - The class which represents a PhidgetServo or PhisgetAdvancedServo board in Processing.
+ myServo - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhisgetAdvancedServo) to a computer, see example "Connect_Multiple_Phidgets".
  
  new Servo(this) - A command to create an object and connect it to the connected board.
  
- servo.setPosition(0, mouseY/4) - command the servo attached to station 0 of the board to rotate to position set by mouse y position in sketch's window.
+ myServo.setPosition(0, mouseY/4) - command the servo attached to station 0 of the board to rotate to position set by mouse y position in sketch's window.
  
- servo.setSpeed(0, mouseX/4) - set servo's speed to value proportional to mouse's x position.
+ myServo.setSpeed(0, mouseX/4) - set servo's speed to value proportional to mouse's x position.
  
  All functions:
 

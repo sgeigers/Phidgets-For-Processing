@@ -12,14 +12,14 @@
 
 import shenkar.phidgets.*;
 
-Temperature temp;
+Temperature myTemp;
 
 PFont font;
 
 void setup() {
   size(200,600);
   
-  temp = new Temperature(this);
+  myTemp = new Temperature(this);
   
   font = createFont("Tahoma", 24);
   textFont(font);
@@ -27,7 +27,7 @@ void setup() {
 }
 
 void draw() {
-  drawThermometer (temp.getTemp());
+  drawThermometer (myTemp.getTemp());
 }
   
 void drawThermometer(float t) {
@@ -50,13 +50,13 @@ void drawThermometer(float t) {
    Shenkar is a college for design, engineering and art in Israel.
    
  Temperature - The class which represents a PhidgetTemperatureSensor board in Processing.
- temp - A name to represent the board that is connected to the computer.
+ myTemp - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g interface kit) to a computer, see example "Connect_Multiple_Phidgets".
  
  new Temperature(this) - A command to create an object and connect it to the connected board.
  
- temp.getTemp() - get the temperature read by the board.
+ myTemp.getTemp() - get the temperature read by the board.
  
  
  All functions:

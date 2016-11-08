@@ -6,15 +6,15 @@
 
 import shenkar.phidgets.*;
 
-Bridge bridge;
+Bridge myBridge;
 
 PFont font;
 
 void setup() {
   size(300,200);
   
-  bridge = new Bridge(this);
-  bridge.setGain(0, 128);
+  myBridge = new Bridge(this);
+  myBridge.setGain(0, 128);
   font = createFont("Tahoma", 24);
   textFont(font);
 }
@@ -23,7 +23,7 @@ void draw() {
   background(0);
   noStroke();
   fill(200);
-  text("Strain is: " + bridge.getValue(0), 50,100);
+  text("Strain is: " + myBridge.getValue(0), 50,100);
 }
  
 /*
@@ -33,17 +33,17 @@ void draw() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- Bridge - The class which represents a PhidgetBridge board in Processing.
- bridge - A name to represent the board that is connected to the computer.
+ Bridge   - The class which represents a PhidgetBridge board in Processing.
+ myBridge - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhidgetBridge) to a computer, see example "Connect_Multiple_InterfaceKits".
  
  new Bridge(this) - A command to create an object and connect it to the connected board.
  
- bridge.setGain(0, 128) - Set maximum gain for channel 0 of the board. It is recommended to always set maximum gain possible, unless the full
+ myBridge.setGain(0, 128) - Set maximum gain for channel 0 of the board. It is recommended to always set maximum gain possible, unless the full
    scale of the sensor is not covered.
    
- bridge.getValue(0) - Get the value of sensor connected to position 0 of the board. The returned value is of type "double", and can be converted
+ myBridge.getValue(0) - Get the value of sensor connected to position 0 of the board. The returned value is of type "double", and can be converted
    to "float" by adding "(float)" before the expression.
  
  

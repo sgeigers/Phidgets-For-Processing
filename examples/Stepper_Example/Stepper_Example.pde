@@ -20,22 +20,22 @@ import shenkar.phidgets.*;
  stopped(mot)                // return true if the motor is stopped.
 */
 
-Stepper stepper;
+Stepper myStepper;
 
 void setup() {
   size(300,300);
   
-  stepper = new Stepper(this);
+  myStepper = new Stepper(this);
   
-  stepper.setSpeed(0, 5000);
-  stepper.setAcceleration(0, 100000);
-  stepper.setPosition(0, 0);
-  stepper.setCurrentLimit(0, 1.3);
-  stepper.engage(0);
+  myStepper.setSpeed(0, 5000);
+  myStepper.setAcceleration(0, 100000);
+  myStepper.setPosition(0, 0);
+  myStepper.setCurrentLimit(0, 1.3);
+  myStepper.engage(0);
 }
 
 void draw() {
-  stepper.setTarget(0, mouseX*10);
+  myStepper.setTarget(0, mouseX*10);
 }
 
 /*
@@ -45,24 +45,24 @@ void draw() {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- Stepper - The class which represents a PhidgetStepper board in Processing.
- stepper - A name to represent the board that is connected to the computer.
+ Stepper   - The class which represents a PhidgetStepper board in Processing.
+ myStepper - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhidgetStepper) to a computer, see example "Connect_Multiple_Phidgets".
  
  new Stepper(this) - A command to create an object and connect it to the connected board.
  
- stepper.setSpeed(0, 5000) - set maximum speed for the motor.
+ myStepper.setSpeed(0, 5000) - set maximum speed for the motor.
 
- stepper.setAcceleration(0, 100000) - set acceleration and deceleration for the motor.
+ myStepper.setAcceleration(0, 100000) - set acceleration and deceleration for the motor.
  
- stepper.setPosition(0, 0) - reset motor's position (in case it has been changed, e.g when using Phidgets Control Panel for testing the board).
+ myStepper.setPosition(0, 0) - reset motor's position (in case it has been changed, e.g when using Phidgets Control Panel for testing the board).
  
- stepper.setCurrentLimit(0, 1.3) - set maximum current for motor. this needs to be changed to fit current motor used. see explanation below.
+ myStepper.setCurrentLimit(0, 1.3) - set maximum current for motor. this needs to be changed to fit current motor used. see explanation below.
  
- stepper.engage(0) - enable opertion of the motor.
+ myStepper.engage(0) - enable opertion of the motor.
  
- stepper.setTarget(0, mouseX*10) - rotate motor according to mouse's x position.
+ myStepper.setTarget(0, mouseX*10) - rotate motor according to mouse's x position.
 
  
  All functions:

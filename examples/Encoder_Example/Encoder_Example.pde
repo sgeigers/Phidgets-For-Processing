@@ -18,20 +18,20 @@
 
 import shenkar.phidgets.*;
 
-Encoder encoder;
+Encoder myEncoder;
 
 void setup() {
   size(300,300);
   
-  encoder = new Encoder(this);
+  myEncoder = new Encoder(this);
   
-  encoder.setPosition(0);
+  myEncoder.setPosition(0);
 }
 
 
 void draw() {
   background(0);
-  drawCircs(encoder.getPosition());
+  drawCircs(myEncoder.getPosition());
 }
 
 void drawCircs(long p) {
@@ -51,17 +51,17 @@ void drawCircs(long p) {
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
    
- Encoder - The class which represents a PhidgetEncoder board in Processing.
- encoder - A name to represent the board that is connected to the computer.
+ Encoder   - The class which represents a PhidgetEncoder board in Processing.
+ myEncoder - A name to represent the board that is connected to the computer.
  
  *** For connecting more than one board of the same type (e.g PhidgetEncoder) to a computer, see example "Connect_Multiple_Phidgets".
  
  new Encoder(this) - A command to create an object and connect it to the connected board.
  
- encoder.setPosition(0) - reset encoder position to 0. Encoder position is kept between runs of the program, as long as the board is powered, so it is recommended
+ myEncoder.setPosition(0) - reset encoder position to 0. Encoder position is kept between runs of the program, as long as the board is powered, so it is recommended
    to reset its position in beginning of sketch.
 
- encoder.getPosition() - get position of encoder.
+ myEncoder.getPosition() - get position of encoder.
 
  
  All functions:

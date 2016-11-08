@@ -13,23 +13,25 @@
 */
 
 // Example for addressing 2 interface kits:
- 
-InterfaceKit ik1;
-InterfaceKit ik2;
+
+import shenkar.phidgets.*;
+
+InterfaceKit interfaceKit1;
+InterfaceKit interfaceKit2;
 
 void setup() {
   size(800,600);
-  ik1 = new InterfaceKit(this, 411059);   	// 411059 is the S/N of the first interface kit
-  ik2 = new InterfaceKit(this, 407880);		// 407880 is the S/N of the second interface kit
+  interfaceKit1 = new InterfaceKit(this, 411059);   	// 411059 is the S/N of the first interface kit
+  interfaceKit2 = new InterfaceKit(this, 407880);		// 407880 is the S/N of the second interface kit
 }
 
 void draw() {
-  println (ik1.analogRead(0));
-  println (ik2.analogRead(0));
+  println (interfaceKit1.analogRead(0));
+  println (interfaceKit2.analogRead(0));
 }
 
-void digitalInputChange(InterfaceKit ifk) {
-  if (ifk.getSer() == 407880) {
+void digitalInputChange(InterfaceKit callingInterfaceKit) {
+  if (callingInterfaceKit.getSer() == 407880) {
     println("Input change on second interface kit board");
   }
 }
@@ -52,11 +54,11 @@ void digitalInputChange(InterfaceKit ifk) {
  
 import shenkar.phidgets.*;
 
-InterfaceKit ik;
+InterfaceKit myInterfaceKit;
 
 void setup() {
-  ik = new InterfaceKit(this);
-  ik.printSer();
+  myInterfaceKit = new InterfaceKit(this);
+  myInterfaceKit.printSer();
 }
 
 void draw() {

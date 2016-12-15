@@ -1,26 +1,5 @@
-/*
- Available functions for using an PhidgetsTextLCD board (see end of exmple for explanations):
-
- clear()                   // erase all text currently displayed on the LCD 
- lightOn()                 // turn on backlight of the LCD 
- lightOff()                // turn off backlight of the LCD 
- brightness(brt)           // change intensity of backlight (0..255) 
- contrast(cnt)             // change contrast of LCD display (0..255)
- showCursorLine()          // show a horizontal line in current location of cursor
- hideCursorLine()          // hide the horizontal line in current location of cursor
- showCursorBlink()         // show a blinking rectangle in current location of cursor
- hideCursorBlink()         // hide the blinking rectangle in current location of cursor
- displayChar(row, col, c)  // write a char in a specific location on the LCD
- displayString(row, str)   // write a string in the selected row of LCD
- getColumns()              // get number of columns per row for active LCD
- getRows()                 // get number of rows of active LCD
- getScreen()               // get index of active LCD screen (for TextLCD Adapter, which has 2 screen connectors).
- setScreen(scr)            // set active LCD screen (for TextLCD Adapter, which has 2 screen connectors).
- defineCustomChar(index, val1, val2) // define a custom character to be used in the LCD. See explanations bellow.
-
- NOTICE: When using PhidgetsTextLCD Integrated PhidgetsInterfaceKit 8/8/8, for using the interface kit fuctions, it is required to add an InterfaceKit object. See elaboration below.
-
-*/
+// NOTICE: When using PhidgetsTextLCD Integrated PhidgetsInterfaceKit 8/8/8, for using the interface kit fuctions, 
+//         it is required to add an InterfaceKit object. See elaboration below.
 
 import shenkar.phidgets.*;
 
@@ -54,8 +33,27 @@ void mouseReleased() {
 
   
 /*
+ Quick help:
+ 
+ clear()                   // erase all text currently displayed on the LCD 
+ lightOn()                 // turn on backlight of the LCD 
+ lightOff()                // turn off backlight of the LCD 
+ brightness(brt)           // change intensity of backlight (0..255) 
+ contrast(cnt)             // change contrast of LCD display (0..255)
+ showCursorLine()          // show a horizontal line in current location of cursor
+ hideCursorLine()          // hide the horizontal line in current location of cursor
+ showCursorBlink()         // show a blinking rectangle in current location of cursor
+ hideCursorBlink()         // hide the blinking rectangle in current location of cursor
+ displayChar(row, col, c)  // write a char in a specific location on the LCD
+ displayString(row, str)   // write a string in the selected row of LCD
+ getColumns()              // get number of columns per row for active LCD
+ getRows()                 // get number of rows of active LCD
+ getScreen()               // get index of active LCD screen (for TextLCD Adapter, which has 2 screen connectors).
+ setScreen(scr)            // set active LCD screen (for TextLCD Adapter, which has 2 screen connectors).
+ defineCustomChar(index, val1, val2) // define a custom character to be used in the LCD. See explanations bellow.
 
- Example and elaborated functions explanations:
+ 
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

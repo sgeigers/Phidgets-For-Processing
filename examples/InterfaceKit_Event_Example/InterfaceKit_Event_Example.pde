@@ -1,11 +1,3 @@
-/*
- Available functions for using an InterfaceKit board (see end of exmple for explanations):
- analogRead(pos)   // read a sensor attached to position "pos" 
- digitalRead(pos)  // read a digital input (e.g. switch) connected between G and position "pos" of digital inputs
- digitalWrite(pos, state)  // change the state (of/off) of a digital output (e.g LED) connected to position "pos" of digital outputs
- digitalInputChange(InterfaceKit callingInterfaceKit)  // an event function called when a digital input is changed
-*/
-
 import shenkar.phidgets.*;
 
 InterfaceKit myInterfaceKit;
@@ -19,7 +11,7 @@ void setup() {
 void draw() {
 }
 
-void digitalInputChange(InterfaceKit callingInterfaceKit) {
+void digitalInputChange (InterfaceKit callingInterfaceKit) {
   if (callingInterfaceKit.input == 0) {
     if (callingInterfaceKit.state == true) {
       noStroke();
@@ -31,7 +23,15 @@ void digitalInputChange(InterfaceKit callingInterfaceKit) {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ analogRead(pos)   // read a sensor attached to position "pos" 
+ digitalRead(pos)  // read a digital input (e.g. switch) connected between G and position "pos" of digital inputs
+ digitalWrite(pos, state)  // change the state (of/off) of a digital output (e.g LED) connected to position "pos" of digital outputs
+ digitalInputChange(InterfaceKit callingInterfaceKit)  // an event function called when a digital input is changed
+ 
+
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of th Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.
@@ -43,7 +43,7 @@ void digitalInputChange(InterfaceKit callingInterfaceKit) {
  
  new InterfaceKit(this) - A command to create an object and connect it to the connected board.
 
- void digitalInputChange(InterfaceKit callingInterfaceKit) - An event function. see full explanation bellow
+ void digitalInputChange (InterfaceKit callingInterfaceKit) - An event function. see full explanation bellow
  
  callingInterfaceKit.input - position of digital input that caused the event (works only inside the "digitalInputChange" function)
 
@@ -69,7 +69,7 @@ void digitalInputChange(InterfaceKit callingInterfaceKit) {
    state - "true" to turn on the digital output (set output to 5 Volts).
            "false" to turn off the digital output (set output to ground).
    
- void digitalInputChange(InterfaceKit callingInterfaceKit)
+ void digitalInputChange (InterfaceKit callingInterfaceKit)
    When defined, this function is automatically called whenever a digital input changes stae (e.g a switch is closed or opened).
    Inside the function, it is possible to use callingInterfaceKit.input and callingInterfaceKit.state variables for getting the position of digital input that
    caused the event, and its new state.

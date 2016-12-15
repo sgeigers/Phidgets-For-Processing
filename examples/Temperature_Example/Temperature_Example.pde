@@ -1,14 +1,5 @@
-/*
- Available functions for using a PhidgetTemperatureSensor board (see end of exmple for explanations):
-
- getTemp()     // read the temperature sensed by the board.
- getTemp(pos)  // read the temperature sensed by the board at sensor "pos" (for boards with more than 1 sensor).
- getAmbient()  // read ambient temperature from board.
- 
- NOTE: This class and example were written to be used mainly with PhidgetTemperatureSensor IR board.
-   for using other PhidgetTemperatureSensor boards (with thermocouples) further development is needed.
-   
-*/
+// NOTE: This class and example were written to be used mainly with PhidgetTemperatureSensor IR board.
+//       for using other PhidgetTemperatureSensor boards (with thermocouples) further development is needed.
 
 import shenkar.phidgets.*;
 
@@ -44,7 +35,14 @@ void drawThermometer(float t) {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ getTemp()     // read the temperature sensed by the board.
+ getTemp(pos)  // read the temperature sensed by the board at sensor "pos" (for boards with more than 1 sensor).
+ getAmbient()  // read ambient temperature from board.
+
+
+ Full help: 
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

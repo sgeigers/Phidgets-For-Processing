@@ -1,20 +1,9 @@
 /*
- Available functions for using a PhidgetRFID board (see end of exmple for explanations):
- 
- anyTag()                      // return true if the board "sees" a tag (any tag) in its range
- isTag(tag)                    // return true if the board sees a specific tag. "tag" is a String (i.e. "6800888721")
- whichTag(tags)                // return the index of seen tag, from a String array (see example below). if no tag seen - return -1
- printTag()                    // prints to console the ID of the current seen tag (or last seen tag, if no tag is currently seen)
- tagDetected(RFID callingRFID) // an event function called when the board sees a tag (see example below)
- tagLost(RFID callingRFID)     // an event function called when the board stops seeing a tag
- digitalWrite(pos, state)      // change the state (of/off) of a digital output (e.g LED) connected to position "pos" of digital outputs
- 
  NOTICE: Easiest way to use the board:
  - Get tag ID by printing it (connect the board, run this sketch, bring tag close to board).
- - Marking the ID in the console using the mouse.
+ - Marking the ID in the console (bottom of Processing editor window) using the mouse.
  - Copy ID (Press Ctrl-C).
  - Paste ID in this example instead the ID in "tag" or one of the IDs in "tags" - depending on your application.
- 
  */
 
 import shenkar.phidgets.*;
@@ -73,7 +62,18 @@ void tagDetected(RFID callingRFID) {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ anyTag()                      // return true if the board "sees" a tag (any tag) in its range
+ isTag(tag)                    // return true if the board sees a specific tag. "tag" is a String (i.e. "6800888721")
+ whichTag(tags)                // return the index of seen tag, from a String array (see example below). if no tag seen - return -1
+ printTag()                    // prints to console the ID of the current seen tag (or last seen tag, if no tag is currently seen)
+ tagDetected(RFID callingRFID) // an event function called when the board sees a tag (see example below)
+ tagLost(RFID callingRFID)     // an event function called when the board stops seeing a tag
+ digitalWrite(pos, state)      // change the state (of/off) of a digital output (e.g LED) connected to position "pos" of digital outputs
+
+
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
  Shenkar is a college for design, engineering and art in Israel.

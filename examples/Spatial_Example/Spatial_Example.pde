@@ -1,18 +1,5 @@
-/*
- Available functions for using a PhidgetSpatial board (see end of exmple for explanations):
-
- NOTE: for using the compass data (e.g. bearing of the board - the "getYaw" function), it is needed to first calibrate it. See step-by-step instructions below.
-  
- getPitch()              // get pitch angle of the board (angle of axis 0 above / below horizon). Units: degrees
- getRoll()               // get roll angle of the board (angle of rotation around axis 0, from flat position). Units: degrees
- getYaw()                // get yaw angle of board (bearing of axis 0 relative to magnetic north of earth). Units: degrees
- getAcceleration(axis)   // get acceleration for "axis" (0, 1, or 2). Units: g (earth gravity)
- getRotationRate(axis)   // get rotation speed (gyro data) for "axis" (0, 1 or 2). Units: degrees pre second
- getMagneticField(axis)  // get magnetic field strength for "axis" (0, 1 or 2). Units: Gauss
- initGyro()              // initialize gyro sensor. Board must remain stationary while initializing (1-2 seconds)
- setDataRate(rate)       // sets time between sensor reads, in milliseconds. Default = 8ms
- spatialUpdate(Spatial callingSpatial)  // an event function called every time the board has a new reading. See Spatial_Event_Example
-*/
+// NOTE: for using the compass data (e.g. bearing of the board - the "getYaw" function), it is needed to first calibrate it.
+//       See step-by-step instructions below.
 
 import shenkar.phidgets.*;
 
@@ -42,7 +29,20 @@ void drawArrow() {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ getPitch()              // get pitch angle of the board (angle of axis 0 above / below horizon). Units: degrees
+ getRoll()               // get roll angle of the board (angle of rotation around axis 0, from flat position). Units: degrees
+ getYaw()                // get yaw angle of board (bearing of axis 0 relative to magnetic north of earth). Units: degrees
+ getAcceleration(axis)   // get acceleration for "axis" (0, 1, or 2). Units: g (earth gravity)
+ getRotationRate(axis)   // get rotation speed (gyro data) for "axis" (0, 1 or 2). Units: degrees pre second
+ getMagneticField(axis)  // get magnetic field strength for "axis" (0, 1 or 2). Units: Gauss
+ initGyro()              // initialize gyro sensor. Board must remain stationary while initializing (1-2 seconds)
+ setDataRate(rate)       // sets time between sensor reads, in milliseconds. Default = 8ms
+ spatialUpdate(Spatial callingSpatial)  // an event function called every time the board has a new reading. See Spatial_Event_Example
+
+
+ Full help: 
  
  For using the compass, it is needed to calibarte it locally:
   - Navigate to the Phidgets installation folder on your computer, Open the 'examples' folder and run the Compass Calibrator program. 

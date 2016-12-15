@@ -1,13 +1,3 @@
-/*
- Available functions for using an InterfaceKit board (see end of exmple for explanations):
-
- analogRead(pos)           // read a sensor attached to position "pos" 
- digitalRead(pos)          // read a digital input (e.g. switch) connected between G and position "pos" of digital inputs
- digitalWrite(pos, state)  // change the state (of/off) of a digital output (e.g LED) connected to position "pos" of digital outputs
- dataRate(pos, rate)       // change data rate for analog input.
- digitalInputChange(InterfaceKit callingInterfaceKit)  // an event function called when a digital input is changed (see Interface_Kit_Event_Example)
-*/
-
 import shenkar.phidgets.*;
 
 InterfaceKit myInterfaceKit;
@@ -15,7 +5,6 @@ InterfaceKit myInterfaceKit;
 void setup() {
   size(800,600);
   myInterfaceKit = new InterfaceKit(this);
-  
 }
 
 void draw() {
@@ -27,13 +16,22 @@ void draw() {
   
   noStroke();
   fill(150,0,0);
-  rect(200,50,100,myInterfaceKit.analogRead(0)/2);
+  int sensor = myInterfaceKit.analogRead(0);
+  rect(200,50,100,sensor/2);
 }
-  
-  
-/*
 
- Example and elaborated functions explanations:
+
+/*
+ Quick help:
+
+ analogRead(pos)           // read a sensor attached to position "pos" 
+ digitalRead(pos)          // read a digital input (e.g. switch) connected between G and position "pos" of digital inputs
+ digitalWrite(pos, state)  // change the state (of/off) of a digital output (e.g LED) connected to position "pos" of digital outputs
+ dataRate(pos, rate)       // change data rate for analog input.
+ digitalInputChange(InterfaceKit callingInterfaceKit)  // an event function called when a digital input is changed (see Interface_Kit_Event_Example)
+ 
+
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

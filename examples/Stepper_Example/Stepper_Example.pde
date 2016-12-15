@@ -1,24 +1,10 @@
-import shenkar.phidgets.*;
-
 /**
  * WARNING:
  * Make sure the power supply is unplugged before attaching or removing wires from the terminal blocks.
  * Failure to do so could cause permanent damage to the PhidgetStepper board. 
 **/
 
-/*
- Available functions for using a PhidgetStepper board (see end of exmple for explanations):
-
- setSpeed(mot, spd)          // set maximum speed "spd" for motor connected as station "mot" of board. range: 0..250000 (1/16th steps pre second)
- setAcceleration(mot, acc)   // set acceleration (and deceleration) for motor connected as atation "mot" of board. range: 0..10000000 (units of speed per second)
- setCurrentLimit(mot, crnt)  // set current limit for motor. see below for explanations.
- setTarget(mot, trgt)        // set target position for motor (in 1/16th steps).
- getPosition(mot)            // get current position of motor (in 1/16th steps).
- setPosition(mot, pos)       // set current position of motor (in 1/16th steps).
- engage(mot)                 // enable control of the motor connected to station "mot". must be called once for running the motor.
- disEngage(mot)              // disable control of motor by the board. can be called for allowing the motor to be passively turned.
- stopped(mot)                // return true if the motor is stopped.
-*/
+import shenkar.phidgets.*;
 
 Stepper myStepper;
 
@@ -40,7 +26,20 @@ void draw() {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ setSpeed(mot, spd)          // set maximum speed "spd" for motor connected as station "mot" of board. range: 0..250000 (1/16th steps pre second)
+ setAcceleration(mot, acc)   // set acceleration (and deceleration) for motor connected as atation "mot" of board. range: 0..10000000 (units of speed per second)
+ setCurrentLimit(mot, crnt)  // set current limit for motor. see below for explanations.
+ setTarget(mot, trgt)        // set target position for motor (in 1/16th steps).
+ getPosition(mot)            // get current position of motor (in 1/16th steps).
+ setPosition(mot, pos)       // set current position of motor (in 1/16th steps).
+ engage(mot)                 // enable control of the motor connected to station "mot". must be called once for running the motor.
+ disEngage(mot)              // disable control of motor by the board. can be called for allowing the motor to be passively turned.
+ stopped(mot)                // return true if the motor is stopped.
+
+
+ Full help: 
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

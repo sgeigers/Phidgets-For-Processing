@@ -1,17 +1,3 @@
-/*
- Available functions for using PhidgetMotorControl board (see end of exmple for explanations):
-
- setSpeed(mot, spd)         // set rotation speed (-100..100) for motor connected to position "mot" of the board.
- setAcceleration(mot, acc)  // set motor acceleration (how fast it gains rotation speed). range is 24.51..6250 %/sec
- current(mot)               // get motor use of current (roughly relates to how hard it is for the motor to rotate).
- setBraking(mot, brk)       // set braking power (0..100) to use when speed is set to 0. 
- getEncoderPosition()       // get position of encoder (only for boards with encoder connector).
- setEncoderPostion(pos)     // set position "pos" for encoder (usually used for resetting position to 0).
- analogRead(pos)            // read a sensor attached to position "pos" (only for boards with analog connector). 
- digitalRead(pos)           // read a digital input (e.g. switch) connected between G and position "pos" of digital inputs (only for boards with digital connector). 
-*/
-
-
 import shenkar.phidgets.*;
 
 Motor myMotor;
@@ -26,13 +12,26 @@ void setup() {
 
 void draw() {
   myMotor.setSpeed(0, (mouseX-400)/4);
-  println(myMotor.getEncoderPosition());
+  int encPos = myMotor.getEncoderPosition();
+  println(encPos);
 }
 
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ setSpeed(mot, spd)         // set rotation speed (-100..100) for motor connected to position "mot" of the board.
+ setAcceleration(mot, acc)  // set motor acceleration (how fast it gains rotation speed). range is 24.51..6250 %/sec
+ current(mot)               // get motor use of current (roughly relates to how hard it is for the motor to rotate).
+ setBraking(mot, brk)       // set braking power (0..100) to use when speed is set to 0. 
+ getEncoderPosition()       // get position of encoder (only for boards with encoder connector).
+ setEncoderPostion(pos)     // set position "pos" for encoder (usually used for resetting position to 0).
+ analogRead(pos)            // read a sensor attached to position "pos" (only for boards with analog connector). 
+ digitalRead(pos)           // read a digital input (e.g. switch) connected between G and position "pos" of digital inputs (only for boards with digital connector). 
+
+ 
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

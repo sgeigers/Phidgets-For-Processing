@@ -1,16 +1,4 @@
-/*
- Available functions for using an PhidgetLED board (see end of exmple for explanations):
-
- setBrightness(led, brt)        // set brighness "brt" (0..100) for LED connected to position "led" (0..63 on "PhidgetLED-64 Advanced" board)
- setLinearBrightness(led, brt)  // same as above, but the level is set for better linear brightness perception of human eye. Best for "breathing" and similar effects.
- getBrightness(led)             // get brighness set for LED connected to position "led" (returns 0..100)
- setCurrentLimit(led, lmt)      // sets current limit for a specific LED
- getCurrentLimit(led)           // get current limit set for a specific LED
- setVoltage(vol)                // set voltage for all LEDs
- 
- NOTICE: see explanations below for setting voltage and current limits
-
-*/
+// NOTICE: see explanations below for setting voltage and current limits
 
 import shenkar.phidgets.*;
 
@@ -29,7 +17,17 @@ void draw() {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+
+ setBrightness(led, brt)        // set brighness "brt" (0..100) for LED connected to position "led" (0..63 on "PhidgetLED-64 Advanced" board)
+ setLinearBrightness(led, brt)  // same as above, but the level is set for better linear brightness perception of human eye. Best for "breathing" and similar effects.
+ getBrightness(led)             // get brighness set for LED connected to position "led" (returns 0..100)
+ setCurrentLimit(led, lmt)      // sets current limit for a specific LED
+ getCurrentLimit(led)           // get current limit set for a specific LED
+ setVoltage(vol)                // set voltage for all LEDs
+ 
+ 
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

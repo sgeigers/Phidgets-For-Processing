@@ -1,6 +1,21 @@
-/*
- Available functions for using PhidgetServo and PhisgetAdvancedServo boards (see end of exmple for explanations):
+import shenkar.phidgets.*;
 
+Servo myServo;
+
+void setup() {
+  size(800, 720);
+  myServo = new Servo(this);
+  myServo.setSpeed(0, 6400);
+}
+
+void draw() {
+  myServo.setPosition(0, mouseX/4);
+}
+
+/*
+
+ Quick help:
+ 
  setPosition(mot, pos)      // move servo attached to station "mot" to position "pos"
  getPosition(mot)           // get position of servo attached to station "pos". See limitations below.
  turnOff(mot)               // turn off servo attached to station "mot"
@@ -11,45 +26,9 @@
  stopped(mot)               // returns "true" if the servo is stopped (for PhisgetAdvancedServo boards only).
  setType(mot, type)         // set type of servo connected to station "mot". This can help get a precise control over servo's position. See elaboration below.
  setParameters(...)         // manually sets motor parameters for precise control of a servo. See elaboration below.
- 
-*/
 
-import shenkar.phidgets.*;
 
-Servo myServo;
-
-void setup() {
-  size(800, 720);
-  myServo = new Servo(this);
-  drawGraph();
-}
-
-void draw() {
-  myServo.setPosition(0, mouseY/4);
-  myServo.setSpeed(0, mouseX/4);
-}
-
-void drawGraph() {
-  background(0);
-  stroke(255);
-  fill(255);
-  PFont font = createFont("Ariel", 24);
-  textFont(font);
-
-  line(50,50, 50,200);
-  triangle(40,200,60,200,50,218);
-  textAlign(CENTER, TOP);
-  text ("Position", 50, 222);
-  
-  line(50,50,200,50);
-  triangle(200,40,200,60,218,50);
-  textAlign(LEFT, CENTER);
-  text ("Speed", 225, 47);
-}
-
-/*
-
- Example and elaborated functions explanations:
+ Full help: 
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

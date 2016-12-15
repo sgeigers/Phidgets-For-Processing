@@ -1,14 +1,3 @@
-/*
- Available functions for using an PhidgetsGPS board (see end of exmple for explanations):
-
- positionFix() // returns true if GPS acquired a position (might take a few minutes after connection) 
- latitude()    // get latitude of current position. If position not acquired yet, returns -9999
- longitude()   // get longitude of current position
- altitude()    // get altitude of current position
- velocity()    // get velocity (speed) of movement
- heading()     // get direction of movement (heading)
-*/
-
 import shenkar.phidgets.*;
 
 GPS myGPS;
@@ -17,18 +6,38 @@ void setup() {
   size(200,200);
   
   myGPS = new GPS(this);
+  background(0);
 }
 
 void draw() {
-  if(myGPS.positionFix()) {
-    println(myGPS.longitude(), myGPS.latitude());
+  boolean gotPos = myGPS.positionFix();
+  if(gotPos) {
+    float longi = myGPS.longitude();
+    float lati = myGPS.latitude();
+    float howFar = dist(longi, lati, 30.73422, 32.14355);
+    if (howFar < 0.0005) {
+      background(255);
+    }
+    else {
+      background(0);
+    }
   }
 }
 
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+  
+ positionFix() // returns true if GPS acquired a position (might take a few minutes after connection) 
+ latitude()    // get latitude of current position. If position not acquired yet, returns -9999
+ longitude()   // get longitude of current position
+ altitude()    // get altitude of current position
+ velocity()    // get velocity (speed) of movement
+ heading()     // get direction of movement (heading)
+
+
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

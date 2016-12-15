@@ -1,21 +1,3 @@
-/*
- Available functions for using a PhidgetEncoder board (see end of exmple for explanations):
-
- For boards with only 1 encoder:
- 
- getPosition()          // get position of encoder
- setPosition(pos)       // set position of encoder to "pos"
- getIndexPosition()     // get indexed position. for encoders with index, this will keep the last position when the index was reached.
- 
- For boards with multiple encoder connectors:
- 
- getPosition(enc)       // get position of encoder connected to station "enc" of the board
- setPosition(enc, pos)  // set position of encoder connected to station "enc" of the board to "pos"
- getIndexPosition(enc)  // get indexed position of encoder connected to station "enc" of the board. for encoders with index, this will keep the last position when the index was reached.
- 
- digitalRead(sta)       // read a digital input (e.g. limit switch) connected between G and station "sta" of digital inputs (only for boards with digital connector).
-*/
-
 import shenkar.phidgets.*;
 
 Encoder myEncoder;
@@ -46,7 +28,26 @@ void drawCircs(long p) {
 
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ For boards with only 1 encoder:
+ 
+ getPosition()          // get position of encoder
+ setPosition(pos)       // set position of encoder to "pos"
+ getIndexPosition()     // get indexed position. for encoders with index, this will keep the last position when the index was reached.
+ 
+ For boards with multiple encoder connectors:
+ 
+ getPosition(enc)       // get position of encoder connected to station "enc" of the board
+ setPosition(enc, pos)  // set position of encoder connected to station "enc" of the board to "pos"
+ getIndexPosition(enc)  // get indexed position of encoder connected to station "enc" of the board. for encoders with index, this will keep the last position when the index was reached.
+ 
+ for boards with digital input connector:
+ 
+ digitalRead(sta)       // read a digital input (e.g. limit switch) connected between G and station "sta" of digital inputs.
+
+ 
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

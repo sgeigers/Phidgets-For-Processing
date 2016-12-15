@@ -1,9 +1,3 @@
-/*
- Available functions for using a PhidgetBridge board (see end of exmple for explanations):
- getValue(ch)   // read the input value at channel "ch" 
- setGain(ch, gain)  // set the gain for channel "ch". gain can be: 1/8/16/32/64/128
-*/
-
 import shenkar.phidgets.*;
 
 Bridge myBridge;
@@ -23,12 +17,19 @@ void draw() {
   background(0);
   noStroke();
   fill(200);
-  text("Strain is: " + myBridge.getValue(0), 50,100);
+  float strain = myBridge.getValue(0);
+  text("Strain is: " + strain, 50,100);
 }
  
 /*
 
- Example and elaborated functions explanations:
+ Quick help:
+ 
+ getValue(ch)   // read the input value at channel "ch" 
+ setGain(ch, gain)  // set the gain for channel "ch". gain can be: 1/8/16/32/64/128
+
+
+ Full help:
  
  shenkar.phidgets.* - The library which contains all the classes and functions that allows easy conrol of the Phidgets boards.
    Shenkar is a college for design, engineering and art in Israel.

@@ -1,5 +1,5 @@
 # Notice:
-This is a deprecated (old) library. It only supports Phidget22.
+This is a deprecated (old) library. It only supports Phidget21.
 New users should use [SimplePhidgets](https://github.com/sgeigers/SimplePhidgets) - which supports Phidget22. 
 
 # Phidgets For Processing

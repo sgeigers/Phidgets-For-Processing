@@ -1,3 +1,7 @@
+# Notice:
+This is a deprecated (old) library. It only supports Phidget22.
+New users should use [SimplePhidgets](https://github.com/sgeigers/SimplePhidgets) - which supports Phidget22. 
+
 # Phidgets For Processing
 A Library by Shachar Geiger for the [Processing](http://www.processing.org) programming environment.
 Last update, 21/07/2016. 
